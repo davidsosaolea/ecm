@@ -1803,9 +1803,9 @@ const header = document.querySelector(".header");
 const threshold = 100; // px antes de activar modo compacto
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > threshold && window.scrollY > lastScrollY) {
+  if (window.scrollY > threshold) {
     header.classList.add("compact");
-  } else if (window.scrollY < lastScrollY) {
+  } else {
     header.classList.remove("compact");
   }
   lastScrollY = window.scrollY;
