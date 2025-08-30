@@ -1142,6 +1142,16 @@
 .product-title {
   font-size: 14px;
 }
+/* Barra de búsqueda fija */
+.search-section {
+  position: sticky;
+  top: 0;              /* siempre arriba */
+  background: white;   /* fondo sólido para que no se vea raro al hacer scroll */
+  z-index: 300;        /* por encima del contenido */
+  padding: 8px 0;
+  border-bottom: 1px solid #eee; /* línea suave para separar */
+}
+
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
