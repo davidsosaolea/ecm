@@ -1,399 +1,692 @@
 <!DOCTYPE html>
-<html lang="es"> 
-<head> 
+<html lang="es">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECM FUT SPORTS - Catálogo de Camisetas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <title>ECM FUT SPORTS - Tienda de Camisetas Deportivas</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body { 
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-      min-height: 100vh;
+      background: #f8f9fa;
       color: #333;
       line-height: 1.6;
     }
 
-    /* Header */
+    /* HEADER */
     .header {
-      background: rgba(36, 36, 36, 0.95);
-      backdrop-filter: blur(20px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      padding: 20px 0;
-      margin-bottom: 30px;
-      border-bottom: 2px solid #444;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
+    .promo-bar {
+      background: linear-gradient(135deg, #242424, #444);
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      font-size: 14px;
+      position: relative;
+    }
+
+    .promo-bar p {
+      margin: 0;
+      font-weight: 500;
+    }
+
+    .promo-bar .whatsapp-link {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #25d366;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .header-main {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
+      padding: 15px 20px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
-    .logo {
+    .logo-section {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     .logo-image {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .logo-image:hover {
-      transform: scale(1.05);
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     }
 
     .logo-text h1 {
-      font-size: 32px;
+      font-size: 28px;
       font-weight: 800;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      color: #242424;
       margin-bottom: 5px;
     }
 
     .logo-text p {
-      font-size: 16px;
-      color: #ccc;
+      font-size: 14px;
+      color: #666;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
     }
 
-    .social-links {
-      display: flex;
-      gap: 15px;
-      align-items: center;
-    }
-
-    .social-link {
-      width: 50px;
-      height: 50px;
-      border-radius: 15px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      color: white;
-      transition: all 0.3s ease;
-      font-size: 20px;
+    .search-section {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 40px;
       position: relative;
-      overflow: hidden;
-    }
-
-    .social-link::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .social-link:hover::before {
-      left: 100%;
-    }
-
-    .social-link.whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
-    .social-link.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .social-link.facebook { background: linear-gradient(135deg, #1877f2, #0c63d4); }
-    .social-link.tiktok { background: linear-gradient(135deg, #ff0050, #000000); }
-
-    .social-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    }
-
-    .contact-info {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 16px;
-      color: white;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 12px 20px;
-      border-radius: 25px;
-      backdrop-filter: blur(10px);
-    }
-
-    .contact-info i {
-      color: #25d366;
-    }
-
-    /* Main Content */
-    .main-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .filters {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 30px;
-      border-radius: 25px;
-      margin-bottom: 40px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-      text-align: center;
     }
 
     .search-container {
       position: relative;
-      max-width: 500px;
-      margin: 0 auto;
     }
 
     #searchInput {
       width: 100%;
-      padding: 18px 25px 18px 60px;
+      padding: 15px 50px 15px 20px;
       border: 2px solid #e1e5e9;
-      border-radius: 20px;
+      border-radius: 50px;
       font-size: 16px;
       transition: all 0.3s ease;
-      background: white;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      background: #f8f9fa;
     }
 
     #searchInput:focus {
       outline: none;
       border-color: #242424;
-      box-shadow: 0 0 0 4px rgba(36, 36, 36, 0.1);
-      transform: translateY(-2px);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(36, 36, 36, 0.1);
     }
 
-    .search-icon {
+    .search-btn {
       position: absolute;
-      left: 22px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #666;
-      font-size: 18px;
+      right: 5px;
+      top: 5px;
+      bottom: 5px;
+      background: #242424;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    .stats {
+    .search-btn:hover {
+      background: #444;
+    }
+
+    .header-actions {
       display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 25px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 25px;
     }
 
-    .stat-item {
-      text-align: center;
+    .currency-selector {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .currency-selector select {
+      margin-left: 8px;
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background: white;
+    }
+
+    .account-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .account-links a {
+      color: #333;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .account-links a:hover {
+      color: #242424;
+    }
+
+    /* NAVIGATION */
+    .navigation {
+      background: #242424;
+      padding: 0;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
       position: relative;
     }
 
-    .stat-item::after {
+    .main-nav {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .main-nav > li {
+      position: relative;
+    }
+
+    .main-nav > li > a {
+      display: block;
+      padding: 15px 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+    }
+
+    .main-nav > li > a:hover {
+      background: rgba(255,255,255,0.1);
+      border-bottom-color: #25d366;
+    }
+
+    /* Dropdown styles */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 200px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .main-nav > li:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+    }
+
+    .dropdown a {
+      display: block;
+      padding: 10px 20px;
+      color: #333;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .dropdown a:hover {
+      background: #f8f9fa;
+      color: #242424;
+    }
+
+    .dropdown .sub-dropdown {
+      position: absolute;
+      left: 100%;
+      top: 0;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      background: linear-gradient(135deg, rgba(36,36,36,0.9), rgba(68,68,68,0.9)), 
+                  url('https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-4.0.3') center/cover;
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: #25d366;
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      background: #128c7e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+    }
+
+    /* MAIN CONTENT */
+    .main-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #242424;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -8px;
       left: 50%;
       transform: translateX(-50%);
-      width: 30px;
-      height: 3px;
-      background: linear-gradient(135deg, #242424, #444);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
       border-radius: 2px;
     }
 
-    .stat-number {
-      font-size: 28px;
-      font-weight: 800;
-      color: #242424;
-      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    }
-
-    .stat-label {
-      font-size: 14px;
+    .section-header p {
       color: #666;
-      margin-top: 8px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    /* Grid */
-    .grid {
+    /* PRODUCT GRID */
+    .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
       margin-bottom: 60px;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
+    .product-card {
+      background: white;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-      transition: all 0.4s ease;
-      display: flex;
-      flex-direction: column;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
       position: relative;
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(135deg, #242424, #666);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.15);
     }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-image {
+    .product-image {
       position: relative;
       overflow: hidden;
-      cursor: pointer;
       height: 350px;
+      cursor: pointer;
     }
 
-    .card img {
+    .product-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.4s ease;
+      transition: transform 0.3s ease;
     }
 
-    .card:hover img {
-      transform: scale(1.08);
+    .product-card:hover img {
+      transform: scale(1.05);
     }
 
-    .zoom-indicator {
+    .product-badge {
       position: absolute;
       top: 15px;
       left: 15px;
-      background: rgba(0, 0, 0, 0.8);
+      background: #ff4757;
       color: white;
-      padding: 10px 15px;
-      border-radius: 25px;
-      font-size: 12px;
-      opacity: 0;
-      transition: all 0.3s ease;
-      pointer-events: none;
-      backdrop-filter: blur(10px);
-    }
-
-    .card-image:hover .zoom-indicator {
-      opacity: 1;
-      transform: translateY(-5px);
-    }
-
-    .photo-count {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(135deg, #242424, #444);
-      color: white;
-      padding: 8px 12px;
+      padding: 6px 12px;
       border-radius: 20px;
       font-size: 12px;
       font-weight: 600;
-      box-shadow: 0 4px 15px rgba(36, 36, 36, 0.3);
+      text-transform: uppercase;
     }
 
-    .card-content {
+    .product-badge.new {
+      background: #25d366;
+    }
+
+    .product-badge.sale {
+      background: #ff6b35;
+    }
+
+    .photo-counter {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 6px 10px;
+      border-radius: 15px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .product-info {
       padding: 25px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
     }
 
-    .title {
-      font-size: 20px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      color: #1a1a1a;
-      line-height: 1.3;
+    .product-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #242424;
+      margin-bottom: 10px;
+      line-height: 1.4;
     }
 
-    .tags {
-      font-size: 14px;
+    .product-category {
       color: #666;
-      margin-bottom: 20px;
+      font-size: 14px;
+      margin-bottom: 15px;
       font-weight: 500;
+    }
+
+    .product-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
+      margin-bottom: 20px;
     }
 
     .tag {
-      background: #f5f5f5;
-      padding: 4px 12px;
-      border-radius: 15px;
+      background: #f1f3f4;
+      color: #5f6368;
+      padding: 4px 10px;
+      border-radius: 12px;
       font-size: 12px;
-      color: #555;
+      font-weight: 500;
     }
 
-    .btn {
+    .product-pricing {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .price-current {
+      font-size: 24px;
+      font-weight: 700;
+      color: #25d366;
+    }
+
+    .price-old {
+      font-size: 18px;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .discount-badge {
+      background: #ff4757;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      flex: 1;
       background: linear-gradient(135deg, #25d366, #128c7e);
       color: white;
-      padding: 16px 24px;
-      text-align: center;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 16px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
       transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin-top: auto;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      position: relative;
-      overflow: hidden;
+      gap: 8px;
     }
 
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
     }
 
-    .btn:hover::before {
-      left: 100%;
+    .btn-secondary {
+      padding: 12px;
+      background: #f8f9fa;
+      border: 2px solid #e9ecef;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #666;
     }
 
-    .btn:hover {
+    .btn-secondary:hover {
+      background: #e9ecef;
+      color: #333;
+    }
+
+    /* SERVICES SECTION */
+    .services {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      padding: 60px 20px;
+      margin: 80px 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      text-align: center;
+      padding: 30px 20px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+      color: white;
+    }
+
+    .service-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #242424;
+      margin-bottom: 10px;
+    }
+
+    .service-item p {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #242424;
+      color: white;
+      padding: 60px 20px 20px;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #25d366;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: #25d366;
+    }
+
+    .newsletter {
+      background: rgba(255,255,255,0.05);
+      padding: 25px;
+      border-radius: 15px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .newsletter input {
+      flex: 1;
+      padding: 12px 15px;
+      border: none;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.1);
+      color: white;
+      font-size: 14px;
+    }
+
+    .newsletter input::placeholder {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .newsletter button {
+      background: #25d366;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+
+    .newsletter button:hover {
+      background: #128c7e;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .social-link {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 18px;
+    }
+
+    .social-link.instagram { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .social-link.facebook { background: #1877f2; }
+    .social-link.tiktok { background: linear-gradient(135deg, #ff0050, #000); }
+    .social-link.whatsapp { background: #25d366; }
+
+    .social-link:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
     }
 
-    .btn:active {
-      transform: translateY(-1px);
+    .footer-bottom {
+      border-top: 1px solid #444;
+      padding-top: 20px;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
     }
 
-    /* Modal/Gallery Styles */
+    /* MODAL */
     .modal {
       display: none;
       position: fixed;
@@ -402,9 +695,8 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.95);
-      backdrop-filter: blur(15px);
-      animation: fadeIn 0.3s ease;
+      background: rgba(0,0,0,0.95);
+      backdrop-filter: blur(10px);
     }
 
     .modal.show {
@@ -417,32 +709,27 @@
       position: relative;
       max-width: 90%;
       max-height: 90%;
-      margin: auto;
-      animation: scaleIn 0.3s ease;
-    }
-
-    .gallery-container {
-      position: relative;
       background: white;
       border-radius: 20px;
       overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+    }
+
+    .gallery-container {
       max-width: 800px;
-      max-height: 90vh;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
     }
 
     .main-image {
       width: 100%;
       height: 70vh;
       object-fit: contain;
-      background: #f8f8f8;
+      background: #f8f9fa;
     }
 
     .thumbnail-strip {
       display: flex;
       gap: 10px;
       padding: 20px;
-      background: white;
       overflow-x: auto;
       justify-content: center;
     }
@@ -463,175 +750,90 @@
     }
 
     .thumbnail.active {
-      border-color: #242424;
-      transform: scale(1.05);
+      border-color: #25d366;
     }
 
-    .modal-info {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(20px);
-      padding: 20px 25px;
-      border-radius: 15px;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    }
-
-    .modal-title {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-    }
-
-    .modal-tags {
-      font-size: 14px;
-      color: #666;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      justify-content: center;
-    }
-
-    .modal-tag {
-      background: #f0f0f0;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 12px;
-    }
-
-    .close {
+    .modal-close {
       position: absolute;
       top: 20px;
-      right: 30px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(0,0,0,0.7);
       color: white;
-      font-size: 35px;
-      font-weight: bold;
+      border: none;
+      border-radius: 50%;
       cursor: pointer;
-      z-index: 1001;
-      width: 60px;
-      height: 60px;
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .close:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.1) rotate(90deg);
-    }
-
-    /* Navigation arrows */
-    .nav-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 20px;
-      backdrop-filter: blur(10px);
-    }
-
-    .nav-arrow:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: translateY(-50%) scale(1.1);
-    }
-
-    .nav-arrow.prev { left: 20px; }
-    .nav-arrow.next { right: 20px; }
-
-    /* Footer */
-    .footer {
-      background: rgba(36, 36, 36, 0.95);
-      color: white;
-      text-align: center;
-      padding: 40px 30px;
-      margin-top: 60px;
-      backdrop-filter: blur(20px);
-      border-top: 2px solid #444;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .footer-socials {
-      display: flex;
-      justify-content: center;
-      gap: 25px;
-      margin-bottom: 25px;
-    }
-
-    .footer-social {
-      color: white;
-      font-size: 28px;
-      transition: all 0.3s ease;
-      padding: 10px;
-      border-radius: 50%;
-    }
-
-    .footer-social:hover {
-      color: #ccc;
-      transform: translateY(-5px) scale(1.2);
-    }
-
-    .footer p {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-
-    .footer p:first-of-type {
-      font-weight: 600;
       font-size: 18px;
+      z-index: 1001;
     }
 
-    .footer p:last-of-type {
-      opacity: 0.8;
-      font-size: 14px;
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .header-main {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .search-section {
+        order: 3;
+        margin: 0;
+        max-width: 100%;
+      }
+
+      .main-nav {
+        flex-direction: column;
+      }
+
+      .main-nav > li > a {
+        padding: 12px 20px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .promo-bar .whatsapp-link {
+        position: static;
+        display: block;
+        margin-top: 5px;
+      }
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes scaleIn {
-      from { transform: scale(0.8); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    /* Loading animation */
+    /* Loading */
     .loading {
       text-align: center;
       padding: 80px 20px;
-      color: white;
+      color: #666;
     }
 
     .spinner {
-      width: 60px;
-      height: 60px;
-      border: 4px solid rgba(255, 255, 255, 0.3);
-      border-top: 4px solid white;
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #242424;
       border-radius: 50%;
-      animation: spin 1.2s linear infinite;
-      margin: 0 auto 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
     }
 
     @keyframes spin {
@@ -639,154 +841,124 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 25px;
-        text-align: center;
-      }
-
-      .social-links {
-        order: 3;
-      }
-
-      .contact-info {
-        order: 2;
-        font-size: 14px;
-        padding: 10px 16px;
-      }
-
-      .logo {
-        order: 1;
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .logo-image {
-        width: 60px;
-        height: 60px;
-      }
-
-      .logo-text h1 {
-        font-size: 28px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-
-      .stats {
-        gap: 25px;
-      }
-
-      .close {
-        top: 15px;
-        right: 20px;
-        font-size: 28px;
-        width: 45px;
-        height: 45px;
-      }
-
-      .nav-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-      }
-
-      .main-image {
-        height: 50vh;
-      }
-
-      .thumbnail-strip {
-        padding: 15px;
-      }
-
-      .thumbnail {
-        width: 60px;
-        height: 60px;
-      }
-
-      .search-container {
-        max-width: 100%;
-      }
-
-      #searchInput {
-        padding: 15px 20px 15px 50px;
-        font-size: 14px;
-      }
-    }
-
     .no-results {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 80px 20px;
-      color: rgba(255, 255, 255, 0.8);
+      padding: 60px 20px;
+      color: #666;
     }
 
     .no-results i {
-      font-size: 64px;
-      margin-bottom: 25px;
-      opacity: 0.5;
-    }
-
-    .no-results h3 {
-      font-size: 24px;
-      margin-bottom: 15px;
-      color: white;
-    }
-
-    .no-results p {
-      font-size: 16px;
-      opacity: 0.7;
+      font-size: 48px;
+      color: #ddd;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- HEADER -->
   <header class="header">
-    <div class="header-content">
-      <div class="logo">
+    <!-- Promo Bar -->
+    <div class="promo-bar">
+      <p>🚚 ENVÍO GRATIS A PARTIR DE S/ 150 - ENVÍOS A TODO EL PERÚ 🇵🇪</p>
+      <a href="https://wa.me/51991173627" class="whatsapp-link">
+        <i class="fab fa-whatsapp"></i> WhatsApp +51 991 173 627
+      </a>
+    </div>
+
+    <!-- Main Header -->
+    <div class="header-main">
+      <div class="logo-section">
         <img src="https://i.ibb.co/GfG8j1NP/5b19e5c8-8f19-4e12-b9d6-da05c4bc660f-1.png" alt="ECM FUT SPORTS" class="logo-image">
         <div class="logo-text">
           <h1>ECM FUT SPORTS</h1>
           <p>Camisetas Deportivas Premium</p>
         </div>
       </div>
-      
-      <div class="contact-info">
-        <i class="fab fa-whatsapp"></i>
-        <span>+51 991 173 627</span>
+
+      <div class="search-section">
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Buscar camisetas por equipo, jugador o liga...">
+          <button class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
       </div>
 
-      <div class="social-links">
-        <a href="https://wa.me/51991173627" class="social-link whatsapp" target="_blank" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://instagram.com/ecmfutsports" class="social-link instagram" target="_blank" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://facebook.com/ecmfutsports" class="social-link facebook" target="_blank" title="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://tiktok.com/@ecmfutsports" class="social-link tiktok" target="_blank" title="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
+      <div class="header-actions">
+        <div class="currency-selector">
+          Moneda: 
+          <select>
+            <option>S/ PEN</option>
+            <option>$ USD</option>
+          </select>
+        </div>
+        <div class="account-links">
+          <a href="#"><i class="fas fa-user"></i> Mi Cuenta</a>
+          <a href="#"><i class="fas fa-shopping-cart"></i> Carrito</a>
+        </div>
       </div>
     </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+      <div class="nav-container">
+        <ul class="main-nav">
+          <li>
+            <a href="#">⚽ CLUBES</a>
+            <div class="dropdown">
+              <ul>
+                <li><a href="#">🇪🇸 La Liga - España</a></li>
+                <li><a href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</a></li>
+                <li><a href="#">🇮🇹 Serie A - Italia</a></li>
+                <li><a href="#">🇩🇪 Bundesliga - Alemania</a></li>
+                <li><a href="#">🇫🇷 Ligue 1 - Francia</a></li>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <a href="#">🌍 PAÍSES</a>
+            <div class="dropdown">
+              <ul>
+                <li><a href="#">🇵🇪 Perú</a></li>
+                <li><a href="#">🇧🇷 Brasil</a></li>
+                <li><a href="#">🇦🇷 Argentina</a></li>
+                <li><a href="#">🇪🇸 España</a></li>
+                <li><a href="#">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Inglaterra</a></li>
+              </ul>
+            </div>
+          </li>
+          <li><a href="#">⭐ JUGADORES TOP</a></li>
+          <li><a href="#">👕 VERSIÓN JUGADOR</a></li>
+          <li><a href="#">📅 TEMPORADA 2024/25</a></li>
+          <li><a href="#">🕐 RETRO</a></li>
+          <li><a href="#">👶 NIÑOS</a></li>
+          <li>
+            <a href="#">🏀 NBA</a>
+            <div class="dropdown">
+              <ul>
+                <li><a href="#">LA Lakers</a></li>
+                <li><a href="#">Golden State Warriors</a></li>
+                <li><a href="#">Miami Heat</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="main-content">
-    <!-- Filters -->
-    <div class="filters">
-      <div class="search-container">
-        <i class="fas fa-search search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Buscar por nombre o etiquetas...">
-      </div>
-    </div>
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>BIENVENIDO A ECM FUT SPORTS</h1>
+    <p>Las mejores camisetas deportivas con calidad premium y envíos a todo el Perú</p>
+    <a href="https://wa.me/51991173627" class="hero-cta">
+      <i class="fab fa-whatsapp"></i> Consultar Ahora
+    </a>
+  </section>
 
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
     <!-- Loading -->
     <div class="loading" id="loading">
       <div class="spinner"></div>
@@ -794,57 +966,142 @@
       <p>Preparando las mejores camisetas para ti</p>
     </div>
 
-    <!-- Grid -->
-    <div class="grid" id="catalogo" style="display: none;"></div>
+    <!-- Most Sold Section -->
+    <section id="most-sold" style="display: none;">
+      <div class="section-header">
+        <h2>🔥 Más Vendidas</h2>
+        <p>Las camisetas favoritas de nuestros clientes</p>
+      </div>
+      <div class="products-grid" id="mostSoldGrid"></div>
+    </section>
+
+    <!-- New Arrivals Section -->
+    <section id="new-arrivals" style="display: none;">
+      <div class="section-header">
+        <h2>✨ Nuevos Ingresos</h2>
+        <p>Lo último en camisetas deportivas recién llegadas</p>
+      </div>
+      <div class="products-grid" id="newArrivalsGrid"></div>
+    </section>
+
+    <!-- All Products Section -->
+    <section id="all-products" style="display: none;">
+      <div class="section-header">
+        <h2>🛍️ Todos los Productos</h2>
+        <p>Explora nuestro catálogo completo</p>
+      </div>
+      <div class="products-grid" id="allProductsGrid"></div>
+    </section>
   </main>
 
-  <!-- Modal for Gallery View -->
+  <!-- SERVICES SECTION -->
+  <section class="services">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">
+          <i class="fas fa-shipping-fast"></i>
+        </div>
+        <h3>Envíos a Todo el Perú</h3>
+        <p>Entrega rápida y segura por Olva Courier. Envío gratis desde S/ 150</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Pagos 100% Seguros</h3>
+        <p>Transacciones protegidas. Paga con tarjeta, transferencia o contra entrega</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <i class="fab fa-whatsapp"></i>
+        </div>
+        <h3>Soporte 24/7</h3>
+        <p>Atención personalizada vía WhatsApp. Respuesta inmediata a tus consultas</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">
+          <i class="fas fa-medal"></i>
+        </div>
+        <h3>Calidad Premium</h3>
+        <p>Camisetas originales con materiales de primera calidad. Garantía incluida</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Información</h3>
+        <ul class="footer-links">
+          <li><a href="#">Guía de Medidas</a></li>
+          <li><a href="#">Términos y Condiciones</a></li>
+          <li><a href="#">Política de Privacidad</a></li>
+          <li><a href="#">Cambios y Devoluciones</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Categorías</h3>
+        <ul class="footer-links">
+          <li><a href="#">Clubes Europeos</a></li>
+          <li><a href="#">Selecciones Nacionales</a></li>
+          <li><a href="#">Camisetas Retro</a></li>
+          <li><a href="#">Versión Jugador</a></li>
+          <li><a href="#">Camisetas para Niños</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section">
+        <h3>Contacto</h3>
+        <ul class="footer-links">
+          <li><a href="https://wa.me/51991173627"><i class="fab fa-whatsapp"></i> +51 991 173 627</a></li>
+          <li><a href="mailto:info@ecmfutsports.com"><i class="fas fa-envelope"></i> info@ecmfutsports.com</a></li>
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Lima, Perú</a></li>
+        </ul>
+        
+        <div class="social-links">
+          <a href="https://instagram.com/ecmfutsports" class="social-link instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a href="https://facebook.com/ecmfutsports" class="social-link facebook" target="_blank">
+            <i class="fab fa-facebook"></i>
+          </a>
+          <a href="https://tiktok.com/@ecmfutsports" class="social-link tiktok" target="_blank">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://wa.me/51991173627" class="social-link whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h3>Newsletter</h3>
+        <p>Suscríbete para recibir ofertas exclusivas y novedades</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Tu correo electrónico" required>
+          <button type="submit">Suscribirse</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 ECM FUT SPORTS - Todos los derechos reservados | Diseño web profesional</p>
+    </div>
+  </footer>
+
+  <!-- MODAL FOR IMAGE GALLERY -->
   <div id="galleryModal" class="modal">
-    <span class="close" onclick="closeModal()">&times;</span>
+    <button class="modal-close" onclick="closeModal()">&times;</button>
     <div class="modal-content">
       <div class="gallery-container">
-        <div class="nav-arrow prev" onclick="previousImage()">
-          <i class="fas fa-chevron-left"></i>
-        </div>
-        <div class="nav-arrow next" onclick="nextImage()">
-          <i class="fas fa-chevron-right"></i>
-        </div>
-        
         <img class="main-image" id="mainImage" src="" alt="">
-        
-        <div class="thumbnail-strip" id="thumbnailStrip">
-          <!-- Thumbnails will be inserted here -->
-        </div>
-        
-        <div class="modal-info">
-          <div class="modal-title" id="modalTitle"></div>
-          <div class="modal-tags" id="modalTags"></div>
-        </div>
+        <div class="thumbnail-strip" id="thumbnailStrip"></div>
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-content">
-      <div class="footer-socials">
-        <a href="https://wa.me/51991173627" class="footer-social" target="_blank" title="WhatsApp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://instagram.com/ecmfutsports" class="footer-social" target="_blank" title="Instagram">
-          <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://facebook.com/ecmfutsports" class="footer-social" target="_blank" title="Facebook">
-          <i class="fab fa-facebook"></i>
-        </a>
-        <a href="https://tiktok.com/@ecmfutsports" class="footer-social" target="_blank" title="TikTok">
-          <i class="fab fa-tiktok"></i>
-        </a>
-      </div>
-      <p>&copy; 2024 ECM FUT SPORTS - Camisetas Deportivas Premium</p>
-      <p>Calidad garantizada • Envíos a todo el Perú • Atención personalizada</p>
-    </div>
-  </footer>
 
   <script>
     const SHEET_ID = "1hFAKCwee-wBoPe7eXM9OErI_MzXLwsux51iZ0EENl3Q"; 
@@ -856,41 +1113,44 @@
     let currentImages = [];
     let currentImageIndex = 0;
 
+    // Simulate product categories and pricing
+    const productCategories = {
+      'most-sold': ['polo1'], // This will be populated from your sheets
+      'new-arrivals': [],
+      'retro': []
+    };
+
+    const pricingData = {
+      'polo1': { current: 45, old: 60, discount: 25 }
+    };
+
     async function cargarDatos() {
       try {
         const res = await fetch(url);
         const text = await res.text();
         
-        // Check if we got a valid response
         if (text.includes('google.visualization.Query.setResponse')) {
           const json = JSON.parse(text.substring(47, text.length - 2));
           
-          // Check if we have rows
           if (json.table && json.table.rows && json.table.rows.length > 0) {
             const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
             const headers = ["NOMBRE", "ETIQUETAS", "FOTO 1", "FOTO 2", "FOTO 3", "FOTO 4", "FOTO 5", "ETIQUETAS 2"];
             
-            // Convert rows to objects
             let dataRows = rows.map(r => Object.fromEntries(r.map((val, i) => [headers[i], val || ""])));
             
-            // Filter out header row and empty rows
             allData = dataRows.filter((item, index) => {
-              // Skip if NOMBRE is empty or whitespace only
               if (!item.NOMBRE || item.NOMBRE.trim() === "") return false;
               
-              // Skip header rows (common header texts)
               const nombre = item.NOMBRE.toLowerCase().trim();
               if (nombre === 'nombre') return false;
               if (nombre === 'producto') return false;
               if (nombre === 'item') return false;
               if (nombre.includes('nombre')) return false;
               
-              // Skip if it looks like a header row (NOMBRE contains "NOMBRE" or similar)
               if (item.NOMBRE === 'NOMBRE') return false;
               if (item.ETIQUETAS === 'ETIQUETAS') return false;
               if (item['FOTO 1'] === 'FOTO 1') return false;
               
-              // Additional safety: skip very short names that might be headers
               if (item.NOMBRE.length < 2) return false;
               
               return true;
@@ -909,69 +1169,117 @@
         }
         
         document.getElementById("loading").style.display = "none";
-        document.getElementById("catalogo").style.display = "grid";
-        
-        renderCatalogo(allData);
+        showSections();
+        renderAllSections();
         
       } catch (error) {
         console.error("Error cargando datos:", error);
         
-        // Use your actual data as fallback
+        // Fallback data
         allData = [
           {
-            "NOMBRE": "polo1",
-            "ETIQUETAS": "dsf",
-            "FOTO 1": "https://http2.mlstatic.com/D_NQ_NP_2X_939495-MLA82371038465_022025-F.webp",
+            "NOMBRE": "Real Madrid 2024/25 Local",
+            "ETIQUETAS": "Real Madrid, La Liga, Blanco, Local",
+            "FOTO 1": "https://via.placeholder.com/400x400/ffffff/000000?text=Real+Madrid+Local",
+            "FOTO 2": "https://via.placeholder.com/400x400/ffffff/000000?text=RM+Back",
+            "FOTO 3": "",
+            "FOTO 4": "",
+            "FOTO 5": "",
+            "ETIQUETAS 2": "madridismo, florentino, bernabeu, champions"
+          },
+          {
+            "NOMBRE": "Barcelona 2024/25 Local",
+            "ETIQUETAS": "Barcelona, La Liga, Azulgrana, Local",
+            "FOTO 1": "https://via.placeholder.com/400x400/004d98/fcbf00?text=Barcelona+Local",
+            "FOTO 2": "https://via.placeholder.com/400x400/004d98/fcbf00?text=Barca+Back",
+            "FOTO 3": "",
+            "FOTO 4": "",
+            "FOTO 5": "",
+            "ETIQUETAS 2": "mes que un club, camp nou, messi, xavi"
+          },
+          {
+            "NOMBRE": "Manchester United 2024/25 Local",
+            "ETIQUETAS": "Manchester United, Premier League, Rojo, Local",
+            "FOTO 1": "https://via.placeholder.com/400x400/da020e/ffffff?text=Man+United+Local",
             "FOTO 2": "",
             "FOTO 3": "",
             "FOTO 4": "",
             "FOTO 5": "",
-            "ETIQUETAS 2": ""
+            "ETIQUETAS 2": "red devils, old trafford, ten hag, rashford"
           },
           {
-            "NOMBRE": "Camiseta Nike Pro",
-            "ETIQUETAS": "Nike, Deportiva, Azul, Dry-Fit",
-            "FOTO 1": "https://via.placeholder.com/400x400/0066cc/ffffff?text=Nike+Pro",
-            "FOTO 2": "https://via.placeholder.com/400x400/0066cc/ffffff?text=Nike+Pro+Back",
+            "NOMBRE": "PSG 2024/25 Local",
+            "ETIQUETAS": "PSG, Ligue 1, Azul, Local, Mbappe",
+            "FOTO 1": "https://via.placeholder.com/400x400/004170/ffffff?text=PSG+Local",
+            "FOTO 2": "https://via.placeholder.com/400x400/004170/ffffff?text=PSG+Back",
+            "FOTO 3": "https://via.placeholder.com/400x400/004170/ffffff?text=PSG+Detail",
+            "FOTO 4": "",
+            "FOTO 5": "",
+            "ETIQUETAS 2": "paris, champions, neymar, mbappe, ligue 1"
+          },
+          {
+            "NOMBRE": "Selección Perú 2024 Local",
+            "ETIQUETAS": "Perú, Selección, Bicolor, Local, Copa América",
+            "FOTO 1": "https://via.placeholder.com/400x400/ffffff/dc143c?text=Peru+Local",
+            "FOTO 2": "https://via.placeholder.com/400x400/ffffff/dc143c?text=Peru+Back",
             "FOTO 3": "",
             "FOTO 4": "",
             "FOTO 5": "",
-            "ETIQUETAS 2": "swoosh, running, training, deportes"
+            "ETIQUETAS 2": "bicolor, arriba peru, lapadula, cueva, fossati"
           },
           {
-            "NOMBRE": "Camiseta Adidas Original",
-            "ETIQUETAS": "Adidas, Casual, Negro, Algodón",
-            "FOTO 1": "https://via.placeholder.com/400x400/000000/ffffff?text=Adidas+Original",
+            "NOMBRE": "Liverpool 2024/25 Retro 2005",
+            "ETIQUETAS": "Liverpool, Premier League, Retro, Rojo, 2005",
+            "FOTO 1": "https://via.placeholder.com/400x400/c8102e/ffffff?text=Liverpool+Retro",
             "FOTO 2": "",
             "FOTO 3": "",
             "FOTO 4": "",
             "FOTO 5": "",
-            "ETIQUETAS 2": "three stripes, lifestyle, street"
+            "ETIQUETAS 2": "gerrard, istanbul, champions, anfield, ynwa"
           }
         ];
         
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("catalogo").style.display = "grid";
+        // Add pricing data for demo products
+        const demoPricing = {
+          "Real Madrid 2024/25 Local": { current: 85, old: 110, discount: 23 },
+          "Barcelona 2024/25 Local": { current: 80, old: 100, discount: 20 },
+          "Manchester United 2024/25 Local": { current: 75, old: 95, discount: 21 },
+          "PSG 2024/25 Local": { current: 90, old: 120, discount: 25 },
+          "Selección Perú 2024 Local": { current: 70, old: 85, discount: 18 },
+          "Liverpool 2024/25 Retro 2005": { current: 95, old: 130, discount: 27 }
+        };
         
-        renderCatalogo(allData);
+        Object.assign(pricingData, demoPricing);
+        
+        document.getElementById("loading").style.display = "none";
+        showSections();
+        renderAllSections();
         
         // Show connection status
         const loadingDiv = document.getElementById('loading');
         loadingDiv.style.display = 'block';
         loadingDiv.style.background = 'rgba(255, 107, 107, 0.1)';
-        loadingDiv.style.color = 'white';
         loadingDiv.style.marginBottom = '20px';
         loadingDiv.innerHTML = `
-          <div style="padding: 20px; border-radius: 15px; background: rgba(255,255,255,0.1);">
+          <div style="padding: 20px; border-radius: 15px; background: rgba(255,255,255,0.1); color: #666;">
             <i class="fas fa-wifi" style="font-size: 24px; margin-bottom: 10px; color: #ff6b6b;"></i>
-            <h4>Modo Sin Conexión</h4>
-            <p style="font-size: 14px; opacity: 0.9; margin-bottom: 10px;">
-              Mostrando datos de demostración. La conexión con Google Sheets será automática una vez que esté disponible.
+            <h4>Modo Demostración</h4>
+            <p style="font-size: 14px; margin-bottom: 10px;">
+              Mostrando productos de ejemplo. Conecta tu Google Sheets para mostrar tu inventario real.
             </p>
-            <small style="opacity: 0.7;">Incluyendo tu producto "polo1" como ejemplo</small>
           </div>
         `;
+        
+        setTimeout(() => {
+          loadingDiv.style.display = 'none';
+        }, 3000);
       }
+    }
+
+    function showSections() {
+      document.getElementById("most-sold").style.display = "block";
+      document.getElementById("new-arrivals").style.display = "block";
+      document.getElementById("all-products").style.display = "block";
     }
 
     function getAvailableImages(item) {
@@ -985,12 +1293,100 @@
       return images;
     }
 
-    function renderCatalogo(data) {
-      const grid = document.getElementById("catalogo");
-      const search = document.getElementById("searchInput").value.toLowerCase();
+    function getProductPricing(productName) {
+      return pricingData[productName] || { current: 75, old: 95, discount: 21 };
+    }
+
+    function getBadgeType(index, productName) {
+      if (index < 2) return 'most-sold';
+      if (productName.toLowerCase().includes('retro')) return 'retro';
+      if (index < 4) return 'new';
+      return '';
+    }
+
+    function createProductCard(item, index) {
+      const images = getAvailableImages(item);
+      const mainImage = images.length > 0 ? images[0] : 'https://via.placeholder.com/400x400/cccccc/666666?text=Sin+Imagen';
+      const photoCount = images.length;
+      const pricing = getProductPricing(item.NOMBRE);
+      const badgeType = getBadgeType(index, item.NOMBRE);
       
-      const filteredData = data.filter(item => {
-        const searchTerm = search.toLowerCase();
+      const tags = item.ETIQUETAS ? item.ETIQUETAS.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+      
+      console.log(`Renderizando producto ${index + 1}:`, {
+        nombre: item.NOMBRE,
+        etiquetas: item.ETIQUETAS,
+        fotos: images.length,
+        primeraFoto: mainImage,
+        precio: pricing
+      });
+      
+      const card = document.createElement("div");
+      card.className = "product-card";
+      
+      let badgeHTML = '';
+      if (badgeType === 'most-sold') badgeHTML = `<div class="product-badge">🔥 MÁS VENDIDA</div>`;
+      else if (badgeType === 'new') badgeHTML = `<div class="product-badge new">✨ NUEVO</div>`;
+      else if (badgeType === 'retro') badgeHTML = `<div class="product-badge sale">⚡ RETRO</div>`;
+      
+      card.innerHTML = `
+        <div class="product-image" onclick="openGallery('${item.NOMBRE}', '${item.ETIQUETAS || ''}', ${JSON.stringify(images).replace(/"/g, '&quot;')})">
+          <img src="${mainImage}" 
+               alt="${item.NOMBRE}" 
+               onerror="this.src='https://via.placeholder.com/400x400/cccccc/666666?text=Error+Imagen'">
+          ${badgeHTML}
+          ${photoCount > 1 ? `<div class='photo-counter'><i class="fas fa-images"></i> ${photoCount}</div>` : ""}
+        </div>
+        
+        <div class="product-info">
+          <h3 class="product-title">${item.NOMBRE}</h3>
+          <div class="product-category">
+            <i class="fas fa-tag"></i> ${tags[0] || 'Camiseta Deportiva'}
+          </div>
+          
+          ${tags.length > 0 ? `
+            <div class="product-tags">
+              ${tags.slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join('')}
+              ${tags.length > 3 ? `<span class="tag">+${tags.length - 3}</span>` : ''}
+            </div>
+          ` : ''}
+          
+          <div class="product-pricing">
+            <span class="price-current">S/ ${pricing.current}</span>
+            ${pricing.old ? `<span class="price-old">S/ ${pricing.old}</span>` : ''}
+            ${pricing.discount ? `<span class="discount-badge">-${pricing.discount}%</span>` : ''}
+          </div>
+          
+          <div class="product-actions">
+            <a class="btn-primary" target="_blank" 
+               href="https://wa.me/${DEFAULT_PHONE}?text=¡Hola! Me interesa esta camiseta:%0A%0A👕 *${encodeURIComponent(item.NOMBRE)}*%0A💰 Precio: S/ ${pricing.current}%0A${item.ETIQUETAS ? `🏷️ Categoría: ${encodeURIComponent(tags[0] || '')}%0A` : ''}%0A¿Está disponible? ¿Qué tallas tienes?">
+              <i class="fab fa-whatsapp"></i>
+              Consultar
+            </a>
+            <button class="btn-secondary" onclick="openGallery('${item.NOMBRE}', '${item.ETIQUETAS || ''}', ${JSON.stringify(images).replace(/"/g, '&quot;')})">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+      `;
+      
+      return card;
+    }
+
+    function renderAllSections() {
+      const mostSoldGrid = document.getElementById("mostSoldGrid");
+      const newArrivalsGrid = document.getElementById("newArrivalsGrid");
+      const allProductsGrid = document.getElementById("allProductsGrid");
+      
+      // Clear grids
+      mostSoldGrid.innerHTML = "";
+      newArrivalsGrid.innerHTML = "";
+      allProductsGrid.innerHTML = "";
+      
+      // Filter products based on search
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const filteredData = allData.filter(item => {
+        const searchTerm = search;
         const nombre = item.NOMBRE.toLowerCase();
         const etiquetas = item.ETIQUETAS ? item.ETIQUETAS.toLowerCase() : "";
         const etiquetas2 = item["ETIQUETAS 2"] ? item["ETIQUETAS 2"].toLowerCase() : "";
@@ -1000,67 +1396,54 @@
                etiquetas2.includes(searchTerm);
       });
       
-      grid.innerHTML = "";
-      
       if (filteredData.length === 0) {
-        grid.innerHTML = `
+        allProductsGrid.innerHTML = `
           <div class="no-results">
             <i class="fas fa-search"></i>
-            <h3>No se encontraron camisetas</h3>
+            <h3>No se encontraron productos</h3>
             <p>Intenta con otros términos de búsqueda</p>
           </div>
         `;
         return;
       }
       
+      // Render products in different sections
       filteredData.forEach((item, index) => {
-        const images = getAvailableImages(item);
-        const mainImage = images.length > 0 ? images[0] : 'https://via.placeholder.com/400x400/cccccc/666666?text=Sin+Imagen';
-        const photoCount = images.length;
+        const card = createProductCard(item, index);
         
-        const tags = item.ETIQUETAS ? item.ETIQUETAS.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+        // Most sold (first 4 products)
+        if (index < 4) {
+          mostSoldGrid.appendChild(card.cloneNode(true));
+          // Re-attach event listeners for cloned elements
+          attachCardEvents(mostSoldGrid.lastElementChild, item);
+        }
         
-        // Debug log for each item being rendered
-        console.log(`Renderizando producto ${index + 1}:`, {
-          nombre: item.NOMBRE,
-          etiquetas: item.ETIQUETAS,
-          fotos: images.length,
-          primeraFoto: mainImage
-        });
+        // New arrivals (products 2-5)
+        if (index >= 1 && index < 5) {
+          newArrivalsGrid.appendChild(card.cloneNode(true));
+          attachCardEvents(newArrivalsGrid.lastElementChild, item);
+        }
         
-        const card = document.createElement("div");
-        card.className = "card";
-        
-        card.innerHTML = `
-          <div class="card-image" onclick="openGallery('${item.NOMBRE}', '${item.ETIQUETAS || ''}', ${JSON.stringify(images).replace(/"/g, '&quot;')})">
-            <img src="${mainImage}" 
-                 alt="${item.NOMBRE}" 
-                 onerror="this.src='https://via.placeholder.com/400x400/cccccc/666666?text=Error+Imagen'">
-            <div class="zoom-indicator">
-              <i class="fas fa-images"></i> Ver galería (${photoCount} ${photoCount === 1 ? 'foto' : 'fotos'})
-            </div>
-            ${photoCount > 1 ? `<div class='photo-count'><i class="fas fa-images"></i> ${photoCount}</div>` : ""}
-          </div>
-          
-          <div class="card-content">
-            <div class="title">${item.NOMBRE}</div>
-            ${tags.length > 0 ? `
-              <div class="tags">
-                ${tags.slice(0, 3).map(tag => `<span class="tag"><i class="fas fa-tag"></i> ${tag}</span>`).join('')}
-                ${tags.length > 3 ? `<span class="tag">+${tags.length - 3} más</span>` : ''}
-              </div>
-            ` : ''}
-            
-            <a class="btn" target="_blank" 
-               href="https://wa.me/${DEFAULT_PHONE}?text=¡Hola! Me interesa esta camiseta:%0A%0A👕 *${encodeURIComponent(item.NOMBRE)}*%0A${item.ETIQUETAS ? `🏷️ Etiquetas: ${encodeURIComponent(item.ETIQUETAS)}%0A` : ''}%0A¿Podrías darme más información sobre precio y disponibilidad?">
-              <i class="fab fa-whatsapp"></i>
-              Consultar por WhatsApp
-            </a>
-          </div>
-        `;
-        
-        grid.appendChild(card);
+        // All products
+        allProductsGrid.appendChild(card);
+        attachCardEvents(allProductsGrid.lastElementChild, item);
       });
+    }
+
+    function attachCardEvents(cardElement, item) {
+      const images = getAvailableImages(item);
+      
+      // Gallery button
+      const galleryBtn = cardElement.querySelector('.btn-secondary');
+      if (galleryBtn) {
+        galleryBtn.onclick = () => openGallery(item.NOMBRE, item.ETIQUETAS || '', images);
+      }
+      
+      // Image click
+      const productImage = cardElement.querySelector('.product-image');
+      if (productImage) {
+        productImage.onclick = () => openGallery(item.NOMBRE, item.ETIQUETAS || '', images);
+      }
     }
 
     function openGallery(nombre, etiquetas, images) {
@@ -1071,18 +1454,11 @@
       
       const modal = document.getElementById('galleryModal');
       const mainImage = document.getElementById('mainImage');
-      const modalTitle = document.getElementById('modalTitle');
-      const modalTags = document.getElementById('modalTags');
       const thumbnailStrip = document.getElementById('thumbnailStrip');
-      
-      // Set title and tags
-      modalTitle.textContent = nombre;
-      
-      const tags = etiquetas ? etiquetas.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
-      modalTags.innerHTML = tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('');
       
       // Set main image
       mainImage.src = currentImages[0];
+      mainImage.alt = nombre;
       
       // Create thumbnails
       thumbnailStrip.innerHTML = '';
@@ -1116,16 +1492,6 @@
       });
     }
 
-    function previousImage() {
-      const newIndex = currentImageIndex > 0 ? currentImageIndex - 1 : currentImages.length - 1;
-      showImage(newIndex);
-    }
-
-    function nextImage() {
-      const newIndex = currentImageIndex < currentImages.length - 1 ? currentImageIndex + 1 : 0;
-      showImage(newIndex);
-    }
-
     function closeModal() {
       const modal = document.getElementById('galleryModal');
       modal.classList.remove('show');
@@ -1144,45 +1510,38 @@
       if (modal.classList.contains('show')) {
         if (e.key === 'Escape') {
           closeModal();
-        } else if (e.key === 'ArrowLeft') {
-          previousImage();
-        } else if (e.key === 'ArrowRight') {
-          nextImage();
         }
       }
     });
 
     document.getElementById("searchInput").addEventListener("input", () => {
-      renderCatalogo(allData);
+      renderAllSections();
+    });
+
+    // Newsletter form
+    document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = this.querySelector('input[type="email"]').value;
+      alert('¡Gracias por suscribirte! Te mantendremos informado sobre nuestras novedades.');
+      this.reset();
     });
 
     // Load data on page load
     cargarDatos();
 
-    // Smooth scroll for links
+    // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'smooth',
+            block: 'start'
           });
         }
       });
     });
-
-    // Image error handling
-    document.addEventListener('error', function(e) {
-      if (e.target.tagName === 'IMG') {
-        e.target.src = 'https://via.placeholder.com/400x400/cccccc/666666?text=Imagen+No+Disponible';
-      }
-    }, true);
-
   </script>
 </body>
 </html>
-      const images = [];
-      for (let i = 1; i <= 5; i++) {
-        const photo = item[`FOTO ${i}`];
-        if
