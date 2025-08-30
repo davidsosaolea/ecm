@@ -1816,22 +1816,20 @@
 let lastScrollY = window.scrollY;
 const header = document.querySelector(".header");
 
-function handleScroll() {
+window.addEventListener("scroll", () => {
   const currentY = window.scrollY;
 
   if (currentY > lastScrollY && currentY > 100) {
-    // 👉 Bajando → ocultar
+    // 👇 Bajando → ocultar header
     header.classList.add("compact");
-  } else {
-    // 👉 Subiendo → mostrar
+  } else if (currentY < lastScrollY) {
+    // 👆 Subiendo → mostrar header
     header.classList.remove("compact");
   }
 
   lastScrollY = currentY;
-  requestAnimationFrame(handleScroll);
-}
+});
 
-requestAnimationFrame(handleScroll);
 
 </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
