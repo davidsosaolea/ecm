@@ -15,6 +15,15 @@
       color: #333;
       line-height: 1.6;
     }
+    .promo-bar {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        transition: transform 0.3s ease-in-out;
+    }
+    .promo-bar.hidden {
+        transform: translateY(-100%);
+    }
 
     /* HEADER */
     .header {
@@ -1676,5 +1685,21 @@
       }
     }, {passive: false});
   </script>
+  <script>
+  let lastScrollY = window.scrollY;
+  const promoBar = document.querySelector(".promo-bar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > lastScrollY) {
+      // Bajando -> ocultar
+      promoBar.classList.add("hidden");
+    } else {
+      // Subiendo -> mostrar
+      promoBar.classList.remove("hidden");
+    }
+    lastScrollY = window.scrollY;
+  });
+</script>
+
 </body>
 </html>
