@@ -1811,16 +1811,24 @@
   
 let lastScrollY = window.scrollY;
 const header = document.querySelector(".header");
-const threshold = 100; // px antes de activar modo compacto
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > threshold) {
+function handleScroll() {
+  const currentY = window.scrollY;
+
+  if (currentY > lastScrollY && currentY > 100) {
+    // 👉 Bajando → ocultar
     header.classList.add("compact");
   } else {
+    // 👉 Subiendo → mostrar
     header.classList.remove("compact");
   }
-  lastScrollY = window.scrollY;
-});
+
+  lastScrollY = currentY;
+  requestAnimationFrame(handleScroll);
+}
+
+requestAnimationFrame(handleScroll);
+
 </script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
