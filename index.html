@@ -1142,8 +1142,8 @@
 .product-title {
   font-size: 14px;
 }
-
 </style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 </head>
 <body>
   <!-- HEADER -->
@@ -1199,21 +1199,33 @@
     </div>
 
     <!-- Most Sold Section -->
-    <section id="most-sold" style="display: none;">
+     <section id="most-sold" style="display: none;">
       <div class="section-header">
         <h2>🔥 Más Vendidas</h2>
         <p>Las camisetas favoritas de nuestros clientes</p>
       </div>
-      <div class="products-grid" id="mostSoldGrid"></div>
-    </section>
-
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper" id="mostSoldGrid"></div>
+        <!-- Flechas -->
+         <div class="swiper-button-next"></div>
+         <div class="swiper-button-prev"></div>
+         <!-- Paginación -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </section>
+      
     <!-- New Arrivals Section -->
     <section id="new-arrivals" style="display: none;">
       <div class="section-header">
         <h2>✨ Nuevos Ingresos</h2>
         <p>Lo último en camisetas deportivas recién llegadas</p>
       </div>
-      <div class="products-grid" id="newArrivalsGrid"></div>
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper" id="newArrivalsGrid"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-pagination"></div>
+        </div>
     </section>
 
     <!-- All Products Section -->
@@ -1525,7 +1537,7 @@
       });
       
       const card = document.createElement("div");
-      card.className = "product-card";
+      card.className = "swiper-slide product-card";
       
       let badgeHTML = '';
       if (badgeType === 'most-sold') badgeHTML = `<div class="product-badge">🔥 MÁS VENDIDA</div>`;
@@ -1725,6 +1737,29 @@
 
     // Load data on page load
     cargarDatos();
+    // Iniciar Swipers
+    const initSwipers = () => {
+      new Swiper(".mySwiper", {
+        slidesPerView: 1,
+        spaceBetween: 20,
+        loop: true,
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        breakpoints: {
+          640: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        },
+      });
+    };
+
+    // Llamar después de renderizar productos
+    setTimeout(initSwipers, 500);
 
     // Smooth scroll for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1776,5 +1811,6 @@ window.addEventListener("scroll", () => {
   lastScrollY = window.scrollY;
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
