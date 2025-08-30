@@ -1582,62 +1582,59 @@
       return card;
     }
 
+  
     function renderAllSections() {
       const mostSoldGrid = document.getElementById("mostSoldGrid");
       const newArrivalsGrid = document.getElementById("newArrivalsGrid");
       const allProductsGrid = document.getElementById("allProductsGrid");
-      
-      // Clear grids
+
+      // limpiar grids
       mostSoldGrid.innerHTML = "";
       newArrivalsGrid.innerHTML = "";
       allProductsGrid.innerHTML = "";
-      
-      // Filter products based on search
+
+      // 🔥 Más Vendidas (primeros 4 productos siempre)
+      allData.slice(0, 4).forEach((item, index) => {
+        const card = createProductCard(item, index);
+        mostSoldGrid.appendChild(card);
+        attachCardEvents(card, item);
+      });
+
+      // ✨ Nuevos Ingresos (productos 2 a 5 siempre)
+      allData.slice(1, 5).forEach((item, index) => {
+        const card = createProductCard(item, index);
+        newArrivalsGrid.appendChild(card);
+        attachCardEvents(card, item);
+      });
+
+      // 🛍️ Todos los productos con filtro
       const search = document.getElementById("searchInput").value.toLowerCase();
       const filteredData = allData.filter(item => {
-        const searchTerm = search;
         const nombre = item.NOMBRE.toLowerCase();
         const etiquetas = item.ETIQUETAS ? item.ETIQUETAS.toLowerCase() : "";
         const etiquetas2 = item["ETIQUETAS 2"] ? item["ETIQUETAS 2"].toLowerCase() : "";
-        
-        return nombre.includes(searchTerm) || 
-               etiquetas.includes(searchTerm) || 
-               etiquetas2.includes(searchTerm);
+        return nombre.includes(search) || etiquetas.includes(search) || etiquetas2.includes(search);
       });
-      
+
       if (filteredData.length === 0) {
         allProductsGrid.innerHTML = `
-          <div class="no-results">
-            <i class="fas fa-search"></i>
-            <h3>No se encontraron productos</h3>
-            <p>Intenta con otros términos de búsqueda</p>
-          </div>
+        <div class="no-results">
+          <i class="fas fa-search"></i>
+          <h3>No se encontraron productos</h3>
+          <p>Intenta con otros términos de búsqueda</p>
+        </div>
         `;
         return;
       }
-      
-      // Render products in different sections
+
       filteredData.forEach((item, index) => {
         const card = createProductCard(item, index);
-        
-        // Most sold (first 4 products)
-        if (index < 4) {
-          mostSoldGrid.appendChild(card.cloneNode(true));
-          // Re-attach event listeners for cloned elements
-          attachCardEvents(mostSoldGrid.lastElementChild, item);
-        }
-        
-        // New arrivals (products 2-5)
-        if (index >= 1 && index < 5) {
-          newArrivalsGrid.appendChild(card.cloneNode(true));
-          attachCardEvents(newArrivalsGrid.lastElementChild, item);
-        }
-        
-        // All products
         allProductsGrid.appendChild(card);
-        attachCardEvents(allProductsGrid.lastElementChild, item);
+        attachCardEvents(card, item);
       });
     }
+
+
 
     function attachCardEvents(cardElement, item) {
       const images = getAvailableImages(item);
@@ -1725,6 +1722,10 @@
 
     document.getElementById("searchInput").addEventListener("input", () => {
       renderAllSections();
+      document.getElementById("all-products").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
     });
 
     // Newsletter form
