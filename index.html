@@ -1096,7 +1096,41 @@
         color: #25d366;
       }
     }
-  </style>
+  
+/* --- Ajustes móviles para header --- */
+@media (max-width: 768px) {
+  .header-main {
+    flex-wrap: nowrap;
+    padding: 10px;
+  }
+  .logo-image {
+    width: 32px;
+    height: 32px;
+  }
+  .logo-text { display: none; }
+  .search-section {
+    flex: 1;
+    margin-left: 10px;
+  }
+  #searchInput {
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+}
+
+/* --- Ajustes para tarjetas de producto más pequeñas --- */
+.products-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+.product-card img {
+  height: 220px; /* reducido de 300px */
+}
+.product-title {
+  font-size: 14px;
+}
+
+</style>
 </head>
 <body>
   <!-- HEADER -->
@@ -1715,19 +1749,19 @@
     }, {passive: false});
   </script>
 <script>
-  let lastScrollY = window.scrollY;
-  const header = document.querySelector(".header");
+  
+let lastScrollY = window.scrollY;
+const header = document.querySelector(".header");
+const threshold = 80; // px antes de activar modo compacto
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 50) {
-      // Bajando y pasó 50px -> compactar header
-      header.classList.add("compact");
-    } else {
-      // Subiendo -> volver a estado normal
-      header.classList.remove("compact");
-    }
-    lastScrollY = window.scrollY;
-  });
+window.addEventListener("scroll", () => {
+  if (window.scrollY > threshold && window.scrollY > lastScrollY) {
+    header.classList.add("compact");
+  } else if (window.scrollY < lastScrollY) {
+    header.classList.remove("compact");
+  }
+  lastScrollY = window.scrollY;
+});
 </script>
 </body>
 </html>
