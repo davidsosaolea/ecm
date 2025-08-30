@@ -24,6 +24,35 @@
     .promo-bar.hidden {
         transform: translateY(-100%);
     }
+    /* Estado normal */
+    .header-main {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        max-width: 1400px;
+        margin: auto;
+        transition: all 0.3s ease-in-out;
+    }
+    /* Estado compacto */
+    .header.compact .promo-bar {
+        display: none;
+    }
+    .header.compact .header-main {
+        padding: 8px 15px;
+        flex-wrap: nowrap;
+    }
+    .header.compact .logo-text {
+        display: none; /* Ocultar texto debajo del logo */
+    }
+    .header.compact .logo-image {
+        width: 35px;
+        height: 35px;
+    }
+    .header.compact .search-section {
+        flex: 1;
+        margin-left: 15px;
+    }
 
     /* HEADER */
     .header {
@@ -1685,21 +1714,20 @@
       }
     }, {passive: false});
   </script>
-  <script>
+<script>
   let lastScrollY = window.scrollY;
-  const promoBar = document.querySelector(".promo-bar");
+  const header = document.querySelector(".header");
 
   window.addEventListener("scroll", () => {
-    if (window.scrollY > lastScrollY) {
-      // Bajando -> ocultar
-      promoBar.classList.add("hidden");
+    if (window.scrollY > lastScrollY && window.scrollY > 50) {
+      // Bajando y pasó 50px -> compactar header
+      header.classList.add("compact");
     } else {
-      // Subiendo -> mostrar
-      promoBar.classList.remove("hidden");
+      // Subiendo -> volver a estado normal
+      header.classList.remove("compact");
     }
     lastScrollY = window.scrollY;
   });
 </script>
-
 </body>
 </html>
