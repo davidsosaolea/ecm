@@ -869,12 +869,34 @@
           if (json.table && json.table.rows && json.table.rows.length > 0) {
             const rows = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
             const headers = ["NOMBRE", "ETIQUETAS", "FOTO 1", "FOTO 2", "FOTO 3", "FOTO 4", "FOTO 5", "ETIQUETAS 2"];
-            allData = rows.map(r => Object.fromEntries(r.map((val, i) => [headers[i], val || ""])));
             
-            // Filter out empty rows
-            allData = allData.filter(item => item.NOMBRE && item.NOMBRE.trim() !== "");
+            // Convert rows to objects
+            let dataRows = rows.map(r => Object.fromEntries(r.map((val, i) => [headers[i], val || ""])));
             
-            console.log("Datos cargados desde Google Sheets:", allData);
+            // Filter out header row and empty rows
+            allData = dataRows.filter((item, index) => {
+              // Skip if NOMBRE is empty or whitespace only
+              if (!item.NOMBRE || item.NOMBRE.trim() === "") return false;
+              
+              // Skip header rows (common header texts)
+              const nombre = item.NOMBRE.toLowerCase().trim();
+              if (nombre === 'nombre') return false;
+              if (nombre === 'producto') return false;
+              if (nombre === 'item') return false;
+              if (nombre.includes('nombre')) return false;
+              
+              // Skip if it looks like a header row (NOMBRE contains "NOMBRE" or similar)
+              if (item.NOMBRE === 'NOMBRE') return false;
+              if (item.ETIQUETAS === 'ETIQUETAS') return false;
+              if (item['FOTO 1'] === 'FOTO 1') return false;
+              
+              // Additional safety: skip very short names that might be headers
+              if (item.NOMBRE.length < 2) return false;
+              
+              return true;
+            });
+            
+            console.log("Datos filtrados:", allData);
           } else {
             throw new Error("No hay filas en la hoja");
           }
@@ -967,10 +989,16 @@
       const grid = document.getElementById("catalogo");
       const search = document.getElementById("searchInput").value.toLowerCase();
       
-      const filteredData = data.filter(item =>
-        item.NOMBRE.toLowerCase().includes(search) || 
-        (item.ETIQUETAS && item.ETIQUETAS.toLowerCase().includes(search))
-      );
+      const filteredData = data.filter(item => {
+        const searchTerm = search.toLowerCase();
+        const nombre = item.NOMBRE.toLowerCase();
+        const etiquetas = item.ETIQUETAS ? item.ETIQUETAS.toLowerCase() : "";
+        const etiquetas2 = item["ETIQUETAS 2"] ? item["ETIQUETAS 2"].toLowerCase() : "";
+        
+        return nombre.includes(searchTerm) || 
+               etiquetas.includes(searchTerm) || 
+               etiquetas2.includes(searchTerm);
+      });
       
       grid.innerHTML = "";
       
@@ -985,12 +1013,20 @@
         return;
       }
       
-      filteredData.forEach(item => {
+      filteredData.forEach((item, index) => {
         const images = getAvailableImages(item);
-        const mainImage = images.length > 0 ? images[0] : 'https://via.placeholder.com/400x400?text=Sin+Imagen';
+        const mainImage = images.length > 0 ? images[0] : 'https://via.placeholder.com/400x400/cccccc/666666?text=Sin+Imagen';
         const photoCount = images.length;
         
         const tags = item.ETIQUETAS ? item.ETIQUETAS.split(',').map(tag => tag.trim()).filter(tag => tag) : [];
+        
+        // Debug log for each item being rendered
+        console.log(`Renderizando producto ${index + 1}:`, {
+          nombre: item.NOMBRE,
+          etiquetas: item.ETIQUETAS,
+          fotos: images.length,
+          primeraFoto: mainImage
+        });
         
         const card = document.createElement("div");
         card.className = "card";
@@ -999,7 +1035,7 @@
           <div class="card-image" onclick="openGallery('${item.NOMBRE}', '${item.ETIQUETAS || ''}', ${JSON.stringify(images).replace(/"/g, '&quot;')})">
             <img src="${mainImage}" 
                  alt="${item.NOMBRE}" 
-                 onerror="this.src='https://via.placeholder.com/400x400?text=Sin+Imagen'">
+                 onerror="this.src='https://via.placeholder.com/400x400/cccccc/666666?text=Error+Imagen'">
             <div class="zoom-indicator">
               <i class="fas fa-images"></i> Ver galería (${photoCount} ${photoCount === 1 ? 'foto' : 'fotos'})
             </div>
